@@ -1164,7 +1164,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
     </div>
     <div class="footer-col"><h6>Services</h6><a href="#services">Oilfield Emergency</a><a href="#services">Construction Equipment</a><a href="#services">Aerospace Manufacturing</a><a href="#services">Equipment Rental</a></div>
     <div class="footer-col"><h6>Company</h6><a href="#about">About H-4</a><a href="#coverage">Coverage Area</a><a href="#contact">Contact</a><a href="#contact">Request a Quote</a></div>
-    <div class="footer-col"><h6>Connect</h6><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:Contact@H-4SS.com">Email Us</a></div>
+    <div class="footer-col"><h6>Connect</h6><a href="https://www.linkedin.com/company/h-4-strategic-solutions/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:Contact@H-4SS.com">Email Us</a></div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">&copy; 2026 H-4 Strategic Solutions LLC. All rights reserved.</span>
@@ -1366,13 +1366,41 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // === Form handler ===
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-btn');
+  const form = e.target;
+  const btn = form.querySelector('.form-btn');
   const orig = btn.innerHTML;
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!';
-  btn.style.background = '#1a8a3e';
-  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; e.target.reset(); }, 3000);
+
+  btn.disabled = true;
+  btn.innerHTML = 'Sending...';
+
+  const data = {
+    name: form.querySelector('#name').value,
+    company: form.querySelector('#company').value,
+    email: form.querySelector('#email').value,
+    message: form.querySelector('#msg').value
+  };
+
+  try {
+    const res = await fetch('https://formspree.io/f/mzdayagp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!';
+      btn.style.background = '#1a8a3e';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000);
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    btn.innerHTML = 'Failed — please email Contact@H-4SS.com';
+    btn.style.background = '#c0392b';
+    setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
+  }
 }
 </script>
 </body>
