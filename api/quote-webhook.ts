@@ -120,6 +120,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Archive the session
     await client.beta.sessions.archive(session.id);
 
+    // Sync to Notion if configured
+    const notionSyncUrl = process.env.NOTION_SYNC_URL; // e.g. https://your-domain.vercel.app/api/notion-sync
+    if (notionSyncUrl && quoteData) {
+      try {
+        await fetch(`${notionSyncUrl}?type=quote`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...quoteData as object, customer: formData.name, email: formData.email }),
+        });
+      } catch {
+        // Non-blocking — don't fail the webhook if Notion sync fails
+      }
+    }
+
     return res.status(200).json({
       success: true,
       session_id: session.id,

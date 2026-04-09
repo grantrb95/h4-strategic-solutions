@@ -10,6 +10,7 @@
     "doc-processing": "tsx src/agents/doc-processing.ts",
     "code-assistant": "tsx src/agents/code-assistant.ts",
     "doc-batch": "tsx src/agents/doc-batch.ts",
+    "finance": "tsx src/agents/finance.ts",
     "setup-vault": "tsx src/setup-vault.ts"
   },
   "dependencies": {

@@ -116,6 +116,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
+    // Sync to Notion if configured
+    const notionSyncUrl = process.env.NOTION_SYNC_URL;
+    if (notionSyncUrl && report) {
+      try {
+        await fetch(`${notionSyncUrl}?type=report`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: `Market Brief — ${today}`,
+            key_findings: report.slice(0, 2000),
+          }),
+        });
+      } catch {
+        // Non-blocking
+      }
+    }
+
     return res.status(200).json({
       success: true,
       date: today,

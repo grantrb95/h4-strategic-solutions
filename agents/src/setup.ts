@@ -199,6 +199,66 @@ When making changes:
   saveToEnv("AGENT_ID_CODE_ASSISTANT", codeAgent.id);
   console.log(`   Code Assistant Agent created: ${codeAgent.id}\n`);
 
+  // ─── 6. Create Finance Agent ────────────────────────────────────
+  console.log("6. Creating Finance Agent...");
+  const financeAgent = await client.beta.agents.create({
+    name: "H-4 Finance",
+    description: "Financial analysis and QuickBooks integration for H-4",
+    model: "claude-opus-4-6",
+    system: `You are the Finance Agent for H-4 Strategic Solutions LLC, a premium hotshot freight carrier (NAICS 484121).
+
+Your job:
+1. Analyze financial data from QuickBooks (P&L, cash flow, expenses)
+2. Track revenue by lane and service category
+3. Monitor expense categories: fuel, insurance, maintenance, equipment, permits
+4. Generate financial reports and profitability analysis
+5. Flag concerning trends (rising costs, declining margins, overdue invoices)
+6. Provide actionable recommendations for financial health
+
+H-4 QuickBooks accounts:
+- 4100 Freight Revenue (primary income)
+- Expense categories: fuel, insurance, maintenance, driver comp, equipment leases, operating supplies, permits
+
+When asked for data, use the get_quickbooks_data tool. When asked to save/sync results, use sync_to_notion.
+Format financial data clearly with dollar amounts and percentages.`,
+    tools: [
+      { type: "agent_toolset_20260401", default_config: { enabled: true } },
+      {
+        type: "custom",
+        name: "get_quickbooks_data",
+        description: "Fetch financial data from QuickBooks (P&L, cash flow, balance sheet)",
+        input_schema: {
+          type: "object",
+          properties: {
+            report_type: {
+              type: "string",
+              enum: ["profit_loss", "cash_flow", "balance_sheet", "expenses", "invoices"],
+              description: "Type of financial report to pull",
+            },
+            period_start: { type: "string", description: "Start date (YYYY-MM-DD)" },
+            period_end: { type: "string", description: "End date (YYYY-MM-DD)" },
+          },
+          required: ["report_type"],
+        },
+      },
+      {
+        type: "custom",
+        name: "sync_to_notion",
+        description: "Sync financial data to the H-4 Notion Operations Hub",
+        input_schema: {
+          type: "object",
+          properties: {
+            data_type: { type: "string", description: "Type of data to sync" },
+            content: { type: "string", description: "JSON content to sync" },
+          },
+          required: ["data_type", "content"],
+        },
+      },
+    ],
+  });
+  saveToEnv("AGENT_ID_FINANCE", financeAgent.id);
+  console.log(`   Finance Agent created: ${financeAgent.id}\n`);
+
   // ─── Done ────────────────────────────────────────────────────────
   console.log("=== Setup Complete ===");
   console.log("\nAll IDs saved to .env. You can now run any agent:");
@@ -206,6 +266,7 @@ When making changes:
   console.log("  npm run market-research");
   console.log("  npm run doc-processing");
   console.log("  npm run code-assistant");
+  console.log("  npm run finance");
 }
 
 main().catch((err) => {
