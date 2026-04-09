@@ -34,10 +34,19 @@ async function main() {
   console.log("The H-4 website repo will be mounted at /workspace/h4-strategic-solutions");
   console.log("Describe features, bugs, or changes you need.\n");
 
+  // Attach GitHub MCP vault if configured (enables PR creation)
+  const vaultId = process.env.VAULT_ID_GITHUB;
+  if (vaultId) {
+    console.log("GitHub MCP vault detected — PR creation enabled.");
+  } else {
+    console.log("No VAULT_ID_GITHUB in .env — PR creation disabled (run setup-vault.ts).");
+  }
+
   const session = await client.beta.sessions.create({
     agent: agentId,
     environment_id: environmentId,
     title: `Code Assistant — ${new Date().toISOString().slice(0, 10)}`,
+    ...(vaultId ? { vault_ids: [vaultId] } : {}),
     resources: [
       {
         type: "github_repository",
