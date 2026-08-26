@@ -165,7 +165,36 @@ def render_scenario(eyebrow, heading, text):
 """
 
 
-def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stats, faqs, service_type, extra_schema=None, persona=None, scenario_eyebrow=None, scenario_heading=None, scenario_text=None):
+def render_hero_ctas(call_first):
+    quote_btn = f'<a class="btn {"btn-outline" if call_first else "btn-primary"}" href="{BASE_URL}/#contact">Request a Quote</a>'
+    call_btn = f'<a class="btn {"btn-primary" if call_first else "btn-outline"}" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>'
+    btns = [call_btn, quote_btn] if call_first else [quote_btn, call_btn]
+    return f'<div style="margin-top:28px; display:flex; gap:14px;">{"".join(btns)}</div>'
+
+
+def render_cta_band(call_first):
+    if call_first:
+        heading = "Get a same-day answer"
+        body = "For an active emergency, call dispatch directly &mdash; it&rsquo;s the fastest way to get a straight answer on capacity and timing."
+        buttons = (
+            f'<a class="btn btn-primary" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>'
+            f'<a class="btn btn-outline" href="{BASE_URL}/#contact">Request a Quote</a>'
+        )
+        buttons_html = f'<div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">{buttons}</div>'
+    else:
+        heading = "Request a same-day quote"
+        body = "Tell us the load and the timeline &mdash; H-4 dispatch confirms capacity the same day."
+        buttons_html = f'<a class="btn btn-primary" href="{BASE_URL}/#contact">Request a Quote</a>'
+    return f"""<div class="cta-band">
+    <div class="eyebrow" style="justify-content:center;">Ready to move?</div>
+    <h2 style="font-size:30px;">{heading}</h2>
+    <p style="margin:0 auto;">{body}</p>
+    {buttons_html}
+  </div>
+"""
+
+
+def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stats, faqs, service_type, extra_schema=None, persona=None, scenario_eyebrow=None, scenario_heading=None, scenario_text=None, call_first=False):
     breadcrumb_schema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -206,10 +235,7 @@ def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stat
     <div class="eyebrow">{eyebrow}</div>
     <h1>{h1_html}</h1>
     <p class="lede">{lede}</p>
-    <div style="margin-top:28px; display:flex; gap:14px;">
-      <a class="btn btn-primary" href="{BASE_URL}/#contact">Request a Quote</a>
-      <a class="btn btn-outline" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>
-    </div>
+    {render_hero_ctas(call_first)}
     {f'<div class="persona-tag">Built for: <span class="accent">{persona}</span></div>' if persona else ''}
     {render_stats(stats)}
   </div>
@@ -219,12 +245,7 @@ def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stat
   {render_scenario(scenario_eyebrow, scenario_heading, scenario_text)}
   {render_faq_html(faqs)}
   {render_related(slug)}
-  <div class="cta-band">
-    <div class="eyebrow" style="justify-content:center;">Ready to move?</div>
-    <h2 style="font-size:30px;">Request a same-day quote</h2>
-    <p style="margin:0 auto;">Tell us the load and the timeline &mdash; H-4 dispatch confirms capacity the same day.</p>
-    <a class="btn btn-primary" href="{BASE_URL}/#contact">Request a Quote</a>
-  </div>
+  {render_cta_band(call_first)}
 </main>
 {render_footer()}
 </body>
@@ -246,7 +267,7 @@ page(
     lede="H-4 Strategic Solutions runs hotshot capacity built for the calls that come in at odd hours and can&rsquo;t sit in a normal freight queue &mdash; a failed part, an equipment swap before the next shift, a stranded load two counties out.",
     body_paragraphs=[
         "Oilfield operations don&rsquo;t run on a schedule that fits standard freight. H-4 Strategic Solutions is based in Fort Gibson, Oklahoma, and holds nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas &mdash; the corridor where most oilfield emergency calls originate.",
-        "Our air-ride 40-ft gooseneck carries up to 22,500 lb payload, enough for wellhead equipment, pump components, and the support machinery that make up most oilfield emergency calls. Every quote request gets a same-day answer with a real ETA, not a forwarded email sitting in a broker queue.",
+        "Our air-ride 40-ft gooseneck carries up to 22,500 lb payload, enough for wellhead equipment, pump components, and the support machinery that make up most oilfield emergency calls. Every quote request gets a straight answer the same day &mdash; capacity, pricing, and timing based on where the truck is and what&rsquo;s already on the schedule.",
         "If you&rsquo;re coordinating logistics for a rig site, a service company, or an operator, request a quote directly and get capacity confirmed the same day &mdash; anywhere in our operating authority, fastest in our core corridor.",
     ],
     stats=[("22,500 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
@@ -254,13 +275,14 @@ page(
         ("How fast can H-4 respond to an oilfield emergency load?", "Most quote requests get a same-day answer with a specific ETA. When equipment is available, pickup can often happen the same day the request comes in."),
         ("What states does H-4 serve for oilfield freight?", "H-4 holds nationwide operating authority. Primary lane density and fastest response times are in the core corridor: Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas."),
         ("What can H-4's equipment haul?", "An air-ride 40-ft gooseneck rated to 22,500 lb payload, suited to wellhead equipment, pump components, and oilfield support machinery within that weight range."),
-        ("How do I request an emergency quote?", "Submit a quote request through the H-4 website or call (918) 869-5241 directly. Dispatch responds the same day with capacity and pricing."),
+        ("How do I request an emergency quote?", "Call (918) 869-5241 for the fastest response, or submit a request through the website &mdash; dispatch will follow up the same day with capacity and pricing."),
     ],
     service_type="Oilfield Emergency Equipment Hauling",
     persona="Rig Site Coordinators &amp; Company Men",
     scenario_eyebrow="On The Ground",
     scenario_heading="A typical emergency call",
-    scenario_text="It&rsquo;s rarely a scheduled pickup. A gasket fails on a Friday night, a rig needs a replacement pump before the next shift change, or equipment has to clear a location before a well control window closes. H&#8209;4 dispatch takes the call, checks what&rsquo;s on hand, and works the load into the nearest available run &mdash; the goal is a same-day answer, not a callback tomorrow.",
+    scenario_text="It&rsquo;s rarely a scheduled pickup. A gasket fails on a Friday night, a rig needs a replacement pump before the next shift change, or equipment has to clear a location before a well control window closes. H&#8209;4 dispatch takes the call, checks current truck position and what&rsquo;s already on the schedule, and gives a straight same-day answer on whether &mdash; and when &mdash; we can take it.",
+    call_first=True,
 )
 
 # ---------------------------------------------------------------------------
