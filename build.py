@@ -13,6 +13,9 @@ ADDRESS = {
     "addressCountry": "US",
 }
 STATES = ["Oklahoma", "Texas", "Colorado", "Kansas", "Missouri", "Arkansas"]
+HUBSPOT_EMBED = """<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/246539369.js"></script>
+<!-- End of HubSpot Embed Code -->"""
 
 NAV = [
     ("Home", f"{BASE_URL}/"),
@@ -248,6 +251,7 @@ def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stat
   {render_cta_band(call_first, cta_body)}
 </main>
 {render_footer()}
+{HUBSPOT_EMBED}
 </body>
 </html>
 """
@@ -467,6 +471,7 @@ html = f"""<!DOCTYPE html>
   </div>
 </main>
 {render_footer()}
+{HUBSPOT_EMBED}
 </body>
 </html>
 """
