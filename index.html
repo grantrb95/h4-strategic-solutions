@@ -121,9 +121,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--bg-deep);
 }
+
+section[id] { scroll-margin-top: 80px; }
 
 body {
   font-family: var(--bd);
@@ -280,9 +283,9 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    HERO — CINEMATIC
    ================================================================ */
 .hero {
-  position:relative; min-height:100vh;
+  position:relative; min-height:100vh; min-height:100svh;
   display:flex; flex-direction:column; justify-content:flex-end;
-  overflow:hidden; padding:0 clamp(20px,5vw,72px) 100px;
+  overflow:hidden; padding:0 clamp(20px,5vw,72px) 88px;
 }
 
 .hero-bg { position:absolute; inset:0; z-index:0; }
@@ -371,7 +374,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    SCROLL-COLOR TEXT SECTION (the star feature)
    ================================================================ */
 .color-shift-section {
-  padding: 200px clamp(20px,5vw,72px);
+  padding: 128px clamp(20px,5vw,72px);
   background: var(--bg-deep);
   position: relative;
   overflow: hidden;
@@ -406,7 +409,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 /* Each word transitions from dim to bright orange as it scrolls into view */
 .cs-text {
   font-family: var(--hd);
-  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  font-size: clamp(2.35rem, 4.8vw, 4.5rem);
   line-height: 1.12;
   letter-spacing: 0.02em;
 }
@@ -427,8 +430,8 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 }
 
 .cs-text-2 {
-  margin-top: 48px;
-  font-size: clamp(2rem, 4vw, 3.8rem);
+  margin-top: 36px;
+  font-size: clamp(1.9rem, 3.6vw, 3.4rem);
 }
 
 /* ================================================================
@@ -447,7 +450,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 }
 
 .stat {
-  padding:72px 32px; text-align:center; position:relative;
+  padding:56px 32px; text-align:center; position:relative;
   border-right:1px solid var(--border);
 }
 .stat:last-child { border-right:none; }
@@ -486,7 +489,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 }
 
 .services-header {
-  padding: 120px clamp(20px,5vw,72px) 60px;
+  padding: 104px clamp(20px,5vw,72px) 48px;
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -504,45 +507,48 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 }
 .sh2 .acc { color:var(--accent); }
 
-/* Horizontal scroll container */
+/* Responsive service grid */
 .h-scroll-wrap {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .h-scroll-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
-  padding: 0 clamp(20px,5vw,72px) 120px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  width:100%;
+  max-width:1424px;
+  margin:0 auto;
+  padding: 0 clamp(20px,5vw,72px) 96px;
 }
 
-.h-scroll-track::-webkit-scrollbar { display:none; }
-
 .svc-card {
-  flex: 0 0 min(420px, 80vw);
-  scroll-snap-align: start;
+  min-width:0;
+  min-height:390px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 56px 44px;
+  padding: 48px 32px;
   position: relative;
   transition: all 0.5s var(--expo);
   overflow: hidden;
+  display:flex;
+  flex-direction:column;
 }
 
-.svc-card:hover { background:var(--bg-card-h); border-color:var(--border-l); }
+.svc-card:hover,
+.svc-card:focus-visible { background:var(--bg-card-h); border-color:var(--border-l); transform:translateY(-4px); }
+.svc-card:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 
-/* Top accent bar on hover */
+/* Persistent accent makes every card read as interactive */
 .svc-card::before {
   content:''; position:absolute; top:0; left:0;
-  width:0; height:3px;
+  width:52px; height:3px;
   background: linear-gradient(90deg, var(--accent), var(--yellow));
   transition: width 0.6s var(--expo);
 }
-.svc-card:hover::before { width:100%; }
+.svc-card:hover::before,
+.svc-card:focus-visible::before { width:100%; }
 
 /* Glow overlay */
 .svc-card::after {
@@ -550,7 +556,8 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
   background: linear-gradient(180deg, var(--accent-glow) 0%, transparent 100%);
   opacity:0; transition:opacity 0.5s;
 }
-.svc-card:hover::after { opacity:1; }
+.svc-card:hover::after,
+.svc-card:focus-visible::after { opacity:1; }
 
 .svc-idx {
   font-family:var(--hd); font-size:4rem; line-height:1;
@@ -561,7 +568,8 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
   transition: all 0.5s;
 }
 
-.svc-card:hover .svc-idx {
+.svc-card:hover .svc-idx,
+.svc-card:focus-visible .svc-idx {
   background: linear-gradient(180deg, var(--accent) 0%, var(--accent-glow) 100%);
   -webkit-background-clip:text; background-clip:text;
 }
@@ -570,41 +578,33 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 .svc-desc { font-size:0.9rem; color:var(--text-2); line-height:1.75; font-weight:300; position:relative; z-index:1; }
 
 .svc-arrow {
-  display:inline-flex; align-items:center; gap:8px; margin-top:32px;
+  display:inline-flex; align-items:center; gap:8px; margin-top:auto; padding-top:28px;
   font-size:0.72rem; font-weight:600; letter-spacing:0.08em;
-  text-transform:uppercase; color:var(--accent);
-  opacity:0; transform:translateY(8px);
+  text-transform:uppercase; color:var(--accent); line-height:1.45; overflow-wrap:anywhere;
+  opacity:1; transform:none;
   transition: all 0.4s var(--expo); position:relative; z-index:1;
 }
-.svc-card:hover .svc-arrow { opacity:1; transform:translateY(0); }
 .svc-arrow svg { width:14px; height:14px; transition:transform 0.3s; }
-.svc-card:hover .svc-arrow svg { transform:translateX(4px); }
+.svc-card:hover .svc-arrow svg,
+.svc-card:focus-visible .svc-arrow svg { transform:translateX(4px); }
 
-/* Scroll hint */
-.scroll-hint {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 clamp(20px,5vw,72px);
-  margin-top: -80px;
-  margin-bottom: 80px;
-  font-family: var(--mn);
-  font-size: 0.6rem;
-  color: var(--text-3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+@media(max-width:1180px){
+  .h-scroll-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc-card{min-height:330px}
 }
 
-.scroll-hint-line {
-  width: 48px; height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+@media(max-width:640px){
+  .h-scroll-track{grid-template-columns:1fr;padding:0 20px 72px;gap:12px}
+  .svc-card{min-height:0;padding:34px 24px}
+  .svc-idx{font-size:3rem;margin-bottom:18px}
+  .svc-title{font-size:1.65rem}
 }
 
 /* ================================================================
    ABOUT — CINEMATIC SPLIT
    ================================================================ */
 .about {
-  padding: 160px clamp(20px,5vw,72px);
+  padding: 120px clamp(20px,5vw,72px);
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
@@ -616,7 +616,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 }
 
 .about-grid {
-  display:grid; grid-template-columns:1.1fr 1fr; gap:80px;
+  display:grid; grid-template-columns:1.1fr 1fr; gap:64px;
   max-width:1280px; margin:0 auto; align-items:center;
 }
 
@@ -641,7 +641,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 .about-img-wrap.v .about-glow, .rv-l.v .about-glow { opacity:1; }
 
 .about-logo-img {
-  width:55%; max-width:260px; position:relative; z-index:2;
+  width:55%; max-width:260px; height:auto; aspect-ratio:1; object-fit:contain; position:relative; z-index:2;
   opacity:0; transform:scale(0.7); filter:blur(12px);
   transition: opacity 1.2s var(--expo) 0.3s, transform 1.2s var(--expo) 0.3s, filter 1.2s var(--expo) 0.3s;
 }
@@ -697,7 +697,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    MISSION — PARALLAX + GLOW
    ================================================================ */
 .mission {
-  position:relative; padding:200px clamp(20px,5vw,72px);
+  position:relative; padding:120px clamp(20px,5vw,72px);
   overflow:hidden; background:var(--bg-deep);
 }
 
@@ -725,7 +725,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    COVERAGE
    ================================================================ */
 .coverage {
-  padding:140px clamp(20px,5vw,72px);
+  padding:110px clamp(20px,5vw,72px);
   background:var(--bg-secondary);
   position:relative; overflow:hidden;
 }
@@ -737,7 +737,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 
 /* Map container */
 .route-map-wrap {
-  max-width:1280px; margin:64px auto 0; position:relative;
+  max-width:1280px; margin:48px auto 0; position:relative;
 }
 
 .route-map-container {
@@ -803,7 +803,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 /* Bottom info strip */
 .cov-strip {
   display:flex; justify-content:center; gap:48px; flex-wrap:wrap;
-  margin-top:56px; padding-top:40px;
+  margin-top:40px; padding-top:32px;
   border-top:1px solid var(--border);
 }
 
@@ -827,7 +827,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    CONTACT
    ================================================================ */
 .contact {
-  padding:140px clamp(20px,5vw,72px);
+  padding:110px clamp(20px,5vw,72px);
   background:var(--bg-deep); position:relative;
 }
 
@@ -845,6 +845,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 .contact-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:var(--bg-card); border:1px solid var(--border); color:var(--accent); flex-shrink:0; }
 .contact-txt strong { display:block; font-size:0.8rem; color:var(--text); margin-bottom:2px; }
 .contact-txt span { font-size:0.85rem; color:var(--text-2); }
+.contact-txt a:hover span { color:var(--accent); }
 
 .contact-form { background:var(--bg-card); border:1px solid var(--border); padding:52px; position:relative; }
 .contact-form::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--accent), var(--yellow), transparent); }
@@ -873,11 +874,11 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
    ================================================================ */
 .footer {
   background:var(--bg-primary); border-top:1px solid var(--border);
-  padding:72px clamp(20px,5vw,72px) 48px;
+  padding:56px clamp(20px,5vw,72px) 40px;
 }
 
 .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:48px; max-width:1280px; margin:0 auto; }
-.footer-brand img { height:52px; margin-bottom:16px; }
+.footer-brand img { width:132px; height:auto; aspect-ratio:1; object-fit:contain; margin-bottom:20px; }
 .footer-brand p { font-size:0.8rem; color:var(--text-3); line-height:1.65; font-weight:300; max-width:280px; }
 
 .footer-col h6 { font-family:var(--mn); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-2); margin-bottom:20px; }
@@ -897,6 +898,34 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 @media(max-width:768px){
   .footer-top{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
+}
+
+@media(max-width:640px){
+  .header{height:68px;padding:0 16px}
+  .header.scrolled{height:58px}
+  .logo-link{gap:8px;min-width:0}
+  .logo-img{width:34px;height:34px;flex-shrink:0}
+  .logo-text{font-size:1rem;letter-spacing:.05em;white-space:nowrap}
+  .hero{padding:0 20px 72px}
+  .hero-h1{font-size:clamp(3.25rem,16vw,4.5rem);margin-bottom:24px}
+  .hero-sub{margin-bottom:32px}
+  .hero-btns{gap:12px}
+  .btn{width:100%;justify-content:center;padding:15px 24px}
+  .scroll-cue{display:none}
+  .sticky-call{right:16px;bottom:16px;padding:12px 16px}
+  .color-shift-section{padding:88px 20px}
+  .color-shift-tag{margin-bottom:28px}
+  .services-header{padding:88px 20px 36px}
+  .about{padding:88px 20px}
+  .about-img-wrap{aspect-ratio:1}
+  .mission{padding:96px 20px}
+  .coverage,.contact{padding:88px 20px}
+  .route-map-wrap{margin-top:32px}
+  .footer{padding:52px 20px 32px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer-brand{grid-column:auto}
+  .footer-brand img{width:112px}
+  .footer-bottom{margin-top:40px}
 }
 </style>
 <script>
@@ -978,7 +1007,57 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
   </div>
 </div>
 
-<!-- Scroll-driven color shift text -->
+<!-- Stats -->
+<section class="stats-wrap" id="stats">
+  <div class="stats-inner" style="grid-template-columns:repeat(2,1fr)">
+    <div class="stat rv">
+      <div class="stat-num" data-target="48" data-suffix=" States">0</div>
+      <div class="stat-lbl">Nationwide Coverage</div>
+    </div>
+    <div class="stat rv d1">
+      <div class="stat-num" data-target="24" data-suffix="/7">0</div>
+      <div class="stat-lbl">Dispatch &amp; Tracking</div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services-section" id="services">
+  <div class="services-header rv">
+    <div class="stag">What We Haul</div>
+    <h2 class="sh2">SPECIALIZED FREIGHT FOR INDUSTRIES<br>WHERE <span class="acc">DOWNTIME ISN'T AN OPTION.</span></h2>
+  </div>
+  <div class="h-scroll-wrap">
+    <div class="h-scroll-track" id="hScrollTrack">
+      <a href="/oilfield-emergency-hauling" class="svc-card rv" aria-label="Learn about Oilfield Emergency Hauling">
+        <div class="svc-idx">01</div>
+        <h3 class="svc-title">OILFIELD EMERGENCY</h3>
+        <p class="svc-desc">Time-critical equipment and parts to active drill sites. When rigs go down, every hour costs thousands — we get your components there fast.</p>
+        <span class="svc-arrow">Oilfield Emergency Hauling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="/construction-equipment-hauling" class="svc-card rv d1" aria-label="Learn about Construction Equipment Hauling">
+        <div class="svc-idx">02</div>
+        <h3 class="svc-title">CONSTRUCTION EQUIPMENT</h3>
+        <p class="svc-desc">Open-deck hauling of heavy equipment, steel, and building materials. Reliable transport for job sites with zero margin for delay.</p>
+        <span class="svc-arrow">Construction Equipment Hauling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="/aerospace-manufacturing-freight" class="svc-card rv d2" aria-label="Learn about Aerospace Manufacturing Freight">
+        <div class="svc-idx">03</div>
+        <h3 class="svc-title">AEROSPACE MANUFACTURING</h3>
+        <p class="svc-desc">Precision handling of aerospace components and manufacturing supplies. White-glove standards for cargo where tolerances are measured in thousandths.</p>
+        <span class="svc-arrow">Aerospace Manufacturing Freight <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="/equipment-rental-logistics" class="svc-card rv d3" aria-label="Learn about Equipment Rental Logistics">
+        <div class="svc-idx">04</div>
+        <h3 class="svc-title">EQUIPMENT RENTAL LOGISTICS</h3>
+        <p class="svc-desc">Dedicated transport for rental fleet equipment — excavators, generators, compressors. Scheduled routes and on-demand dispatch for rental yards.</p>
+        <span class="svc-arrow">Equipment Rental Logistics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll-driven brand standard -->
 <section class="color-shift-section" id="colorShift">
   <div class="color-shift-inner">
     <div class="color-shift-tag">Why H-4</div>
@@ -1013,57 +1092,6 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
       <span class="cs-word">Guaranteed</span>
       <span class="cs-word accent-word">performance.</span>
     </p>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="stats-wrap" id="stats">
-  <div class="stats-inner" style="grid-template-columns:repeat(2,1fr)">
-    <div class="stat rv">
-      <div class="stat-num" data-target="48" data-suffix=" States">0</div>
-      <div class="stat-lbl">Nationwide Coverage</div>
-    </div>
-    <div class="stat rv d1">
-      <div class="stat-num" data-target="24" data-suffix="/7">0</div>
-      <div class="stat-lbl">Dispatch &amp; Tracking</div>
-    </div>
-  </div>
-</section>
-
-<!-- Services -->
-<section class="services-section" id="services">
-  <div class="services-header rv">
-    <div class="stag">What We Haul</div>
-    <h2 class="sh2">SPECIALIZED FREIGHT FOR INDUSTRIES<br>WHERE <span class="acc">DOWNTIME ISN'T AN OPTION.</span></h2>
-  </div>
-  <div class="h-scroll-wrap">
-    <div class="h-scroll-track" id="hScrollTrack">
-      <div class="svc-card rv">
-        <div class="svc-idx">01</div>
-        <h3 class="svc-title">OILFIELD EMERGENCY</h3>
-        <p class="svc-desc">Time-critical equipment and parts to active drill sites. When rigs go down, every hour costs thousands — we get your components there fast.</p>
-        <a href="/oilfield-emergency-hauling" class="svc-arrow">Oilfield Emergency Hauling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-      <div class="svc-card rv d1">
-        <div class="svc-idx">02</div>
-        <h3 class="svc-title">CONSTRUCTION EQUIPMENT</h3>
-        <p class="svc-desc">Open-deck hauling of heavy equipment, steel, and building materials. Reliable transport for job sites with zero margin for delay.</p>
-        <a href="/construction-equipment-hauling" class="svc-arrow">Construction Equipment Hauling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-      <div class="svc-card rv d2">
-        <div class="svc-idx">03</div>
-        <h3 class="svc-title">AEROSPACE MANUFACTURING</h3>
-        <p class="svc-desc">Precision handling of aerospace components and manufacturing supplies. White-glove standards for cargo where tolerances are measured in thousandths.</p>
-        <a href="/aerospace-manufacturing-freight" class="svc-arrow">Aerospace Manufacturing Freight <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-      <div class="svc-card rv d3">
-        <div class="svc-idx">04</div>
-        <h3 class="svc-title">EQUIPMENT RENTAL LOGISTICS</h3>
-        <p class="svc-desc">Dedicated transport for rental fleet equipment — excavators, generators, compressors. Scheduled routes and on-demand dispatch for rental yards.</p>
-        <a href="/equipment-rental-logistics" class="svc-arrow">Equipment Rental Logistics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-    </div>
-    <div class="scroll-hint"><div class="scroll-hint-line"></div> Scroll to explore</div>
   </div>
 </section>
 
@@ -1238,7 +1266,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div class="contact-txt"><strong>Phone</strong><span>Call for dispatch</span></div>
+          <div class="contact-txt"><strong>Phone</strong><a href="tel:9188695241"><span>(918) 869-5241</span></a></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -1462,8 +1490,10 @@ if (routeMapEl) mapObs.observe(routeMapEl);
 // === Smooth scroll ===
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (!href || href === '#') return;
     e.preventDefault();
-    const t = document.querySelector(this.getAttribute('href'));
+    const t = document.querySelector(href);
     if (t) window.scrollTo({ top: t.offsetTop - 65, behavior: 'smooth' });
   });
 });
