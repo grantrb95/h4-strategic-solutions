@@ -6,6 +6,9 @@
 <title>Service Area | Nationwide Hotshot Freight | H-4 Strategic Solutions</title>
 <meta name="description" content="Nationwide hotshot operating authority out of Fort Gibson, OK, with primary lanes across OK, TX, CO, KS, MO & AR. See coverage and request a quote.">
 <link rel="canonical" href="https://www.h-4ss.com/coverage-area">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/favicon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Service Area | Nationwide Hotshot Freight, Core Lanes OK/TX/CO/KS/MO/AR | H-4 Strategic Solutions">
 <meta property="og:description" content="H-4 Strategic Solutions holds nationwide operating authority out of Fort Gibson, Oklahoma, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. See coverage and request a quote.">
@@ -16,7 +19,129 @@
 <meta name="twitter:description" content="H-4 Strategic Solutions holds nationwide operating authority out of Fort Gibson, Oklahoma, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. See coverage and request a quote.">
 <link rel="preload" href="/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<style>
+@font-face { font-family:'Oswald'; font-style:normal; font-weight:500; font-display:swap; src:url('/fonts/oswald-500.woff2') format('woff2'); }
+@font-face { font-family:'Oswald'; font-style:normal; font-weight:700; font-display:swap; src:url('/fonts/oswald-700.woff2') format('woff2'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('/fonts/inter-400.woff2') format('woff2'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap; src:url('/fonts/inter-500.woff2') format('woff2'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap; src:url('/fonts/inter-600.woff2') format('woff2'); }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #262422;
+  --text: #f4f1ec;
+  --text-muted: #9a9590;
+  --accent: #c1502e;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  font-size: 16px;
+}
+h1, h2, h3, .display {
+  font-family: 'Oswald', system-ui, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+  margin: 0 0 20px;
+}
+p { color: var(--text-muted); margin: 0 0 18px; max-width: 68ch; }
+a { color: inherit; }
+.accent { color: var(--accent); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+header.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: rgba(10,10,10,0.94);
+  backdrop-filter: blur(6px); z-index: 50;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+.brand .badge {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--text);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent);
+}
+.brand .name { font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.03em; font-size: 16px; text-transform: uppercase; }
+nav.main-nav { display: flex; align-items: center; gap: 28px; }
+nav.main-nav a {
+  color: var(--text); text-decoration: none; font-size: 12.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+nav.main-nav a:hover { color: var(--accent); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px;
+  border-radius: 4px; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; font-weight: 600; border: 1px solid transparent;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-outline { border-color: var(--border); color: var(--text); }
+.hero { padding: 84px 48px 56px; max-width: 1120px; margin: 0 auto; }
+.eyebrow {
+  color: var(--accent); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--accent); display: inline-block; }
+.crumb { font-size: 12px; color: var(--text-muted); margin-bottom: 28px; }
+.crumb a { color: var(--text-muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent); }
+section { padding: 64px 48px; max-width: 1120px; margin: 0 auto; }
+.section-border { border-top: 1px solid var(--border); }
+.lede { font-size: 19px; color: var(--text); max-width: 62ch; }
+.stat-row {
+  display: flex; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin: 8px 0 0;
+}
+.stat { flex: 1; padding: 28px; text-align: center; border-right: 1px solid var(--border); }
+.stat:last-child { border-right: none; }
+.stat .num { font-family: 'Oswald', sans-serif; font-size: 30px; color: var(--accent); font-weight: 700; }
+.stat .label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 26px 0; }
+.faq-item h3 {
+  font-family: 'Inter', sans-serif; text-transform: none; font-size: 18px;
+  font-weight: 600; letter-spacing: 0; margin: 0 0 10px;
+}
+.faq-item p { margin: 0; }
+.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 28px; }
+.related a {
+  display: block; padding: 22px; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text); text-decoration: none; font-size: 14px;
+}
+.related a:hover { border-color: var(--accent); }
+.related a .rel-label { display: block; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 15px; margin-bottom: 6px; }
+.cta-band { text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 48px; }
+.cta-band .btn { margin-top: 22px; }
+footer.site-footer { padding: 40px 48px; text-align: center; color: var(--text-muted); font-size: 13px; }
+footer.site-footer a { color: var(--text-muted); text-decoration: none; }
+footer.site-footer a:hover { color: var(--accent); }
+.persona-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 9px 18px; font-size: 11px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--text-muted); margin-top: 26px;
+}
+.persona-tag .accent { color: var(--accent); font-weight: 600; }
+.scenario-box {
+  border-left: 3px solid var(--accent); background: var(--card);
+  border-radius: 4px; padding: 34px 38px; margin: 6px 0 0;
+}
+.scenario-box p { color: var(--text); margin: 0; max-width: 74ch; font-size: 16.5px; }
+@media (max-width: 780px) {
+  header.site-header { padding: 16px 20px; }
+  nav.main-nav { display: none; }
+  .hero, section, .wrap { padding-left: 20px; padding-right: 20px; }
+  .stat-row { flex-direction: column; }
+  .stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .stat:last-child { border-bottom: none; }
+}
+
+</style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "H-4 Strategic Solutions", "telephone": "+19188695241", "address": {"@type": "PostalAddress", "streetAddress": "607 SE Railroad St", "addressLocality": "Fort Gibson", "addressRegion": "OK", "postalCode": "74434", "addressCountry": "US"}, "url": "https://www.h-4ss.com/coverage-area", "areaServed": [{"@type": "Country", "name": "United States"}, {"@type": "State", "name": "Oklahoma"}, {"@type": "State", "name": "Texas"}, {"@type": "State", "name": "Colorado"}, {"@type": "State", "name": "Kansas"}, {"@type": "State", "name": "Missouri"}, {"@type": "State", "name": "Arkansas"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does H-4 only run in six states?", "acceptedAnswer": {"@type": "Answer", "text": "No. H-4 holds nationwide (48-state) operating authority. Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas make up the primary corridor where lane density and response times are strongest."}}, {"@type": "Question", "name": "Where is H-4 based?", "acceptedAnswer": {"@type": "Answer", "text": "Fort Gibson, Oklahoma."}}, {"@type": "Question", "name": "How fast is dispatch outside the core corridor?", "acceptedAnswer": {"@type": "Answer", "text": "H-4 will run loads anywhere within its nationwide authority. Response time depends on current lane positioning — requests inside the core corridor typically get the fastest turnaround."}}, {"@type": "Question", "name": "What equipment does H-4 run?", "acceptedAnswer": {"@type": "Answer", "text": "An air-ride 40-ft gooseneck rated to 22,500 lb payload, suited to oilfield equipment, construction machinery, aerospace manufacturing support freight, and equipment rental logistics."}}]}</script>

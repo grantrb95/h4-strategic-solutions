@@ -1,5 +1,9 @@
 import json, os
 
+_STYLES_CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "styles.css")
+with open(_STYLES_CSS_PATH, "r", encoding="utf-8") as _f:
+    STYLES_CSS = _f.read()
+
 OUT = "/home/claude/h4-site-build"
 BASE_URL = "https://www.h-4ss.com"
 PHONE_DISPLAY = "(918) 869-5241"
@@ -57,6 +61,9 @@ def render_head(slug, title, description):
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/favicon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
@@ -67,7 +74,9 @@ def render_head(slug, title, description):
 <meta name="twitter:description" content="{description}">
 <link rel="preload" href="/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<style>
+{STYLES_CSS}
+</style>
 """
 
 
