@@ -990,7 +990,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 <!-- Header -->
 <header class="header" id="header">
   <a href="/" class="logo-link">
-    <img src="/logo-192.png" alt="H-4" class="logo-img">
+    <img src="/logo-96.webp" alt="H-4" width="40" height="40" class="logo-img">
     <div class="logo-text"><span>H-4</span> STRATEGIC SOLUTIONS</div>
   </a>
   <nav class="nav" id="nav">
@@ -1150,7 +1150,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
     <div class="about-img-wrap rv-l">
       <div class="about-logo-reveal">
         <div class="about-glow"></div>
-        <img src="/logo-512.png" alt="H-4 Strategic Solutions" width="512" height="512" class="about-logo-img">
+        <img src="/logo-512.webp" alt="H-4 Strategic Solutions" width="512" height="512" class="about-logo-img">
         <div class="about-logo-line"></div>
       </div>
     </div>
@@ -1339,7 +1339,7 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="/logo-192.png" alt="H-4 Strategic Solutions" width="192" height="192">
+      <img src="/logo-160.webp" alt="H-4 Strategic Solutions" width="160" height="160">
       <p>Premium hotshot freight. Operational excellence backed by data-driven logistics and relentless reliability.</p>
     </div>
     <div class="footer-col"><h6>Services</h6><a href="/oilfield-emergency-hauling">Oilfield Emergency</a><a href="/construction-equipment-hauling">Construction Equipment</a><a href="/aerospace-manufacturing-freight">Aerospace Manufacturing</a><a href="/equipment-rental-logistics">Equipment Rental</a></div>
@@ -1356,14 +1356,9 @@ button { cursor:pointer; font-family:inherit; border:none; background:none; colo
 <script>
 // === Scroll Progress Bar ===
 const scrollProg = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement.scrollHeight - window.innerHeight;
-  scrollProg.style.width = (window.pageYOffset / h * 100) + '%';
-});
 
 // === Header ===
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.pageYOffset > 50); });
 
 // === Mobile Menu ===
 const menuBtn = document.getElementById('menuBtn');
@@ -1438,20 +1433,41 @@ function updateColorShift() {
   });
 }
 
-window.addEventListener('scroll', updateColorShift, { passive: true });
-updateColorShift();
-
 // === Parallax on mission bg text ===
 const mBg = document.getElementById('mBg');
-if (mBg) {
-  window.addEventListener('scroll', () => {
+
+// === Batched scroll handler ===
+// Progress bar, header, color-shift, and parallax all used to run in separate
+// non-passive/unthrottled scroll listeners, each forcing its own layout read
+// on every scroll tick. Consolidated into one passive listener that reads
+// and writes once per animation frame to avoid blocking scroll responsiveness.
+let scrollTicking = false;
+function onScrollFrame() {
+  scrollTicking = false;
+  const scrollY = window.pageYOffset;
+
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProg.style.width = (scrollY / h * 100) + '%';
+
+  header.classList.toggle('scrolled', scrollY > 50);
+
+  updateColorShift();
+
+  if (mBg) {
     const rect = mBg.parentElement.getBoundingClientRect();
     const p = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
     if (p > 0 && p < 1) {
       mBg.style.transform = `translate(-50%, -50%) translateX(${(p - 0.5) * 150}px)`;
     }
-  }, { passive: true });
+  }
 }
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(onScrollFrame);
+  }
+}, { passive: true });
+onScrollFrame();
 
 // === ANIMATED ROUTE MAP ===
 const routeMapEl = document.getElementById('routeMap');
