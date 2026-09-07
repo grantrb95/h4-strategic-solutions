@@ -274,20 +274,20 @@ def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stat
 page(
     slug="oilfield-emergency-hauling",
     title="Oilfield Emergency Hauling | Same-Day Hotshot Freight | H-4 Strategic Solutions",
-    description="Emergency oilfield equipment hauling with nationwide operating authority and primary lanes across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. Same-day quotes, air-ride gooseneck, 22,500 lb payload.",
+    description="Emergency oilfield equipment hauling with nationwide operating authority and primary lanes across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. Same-day quotes, air-ride gooseneck, 23,000 lb payload.",
     eyebrow="Oilfield Emergency Services",
     h1_html='When A Rig Is Down, <span class="accent">Freight Can&rsquo;t Wait.</span>',
     lede="H-4 Strategic Solutions accepts urgent and after-hours oilfield loads for failed parts, equipment swaps, and other time-sensitive moves. Pickup timing is confirmed directly based on truck position, current commitments, loading requirements, and the driver&rsquo;s available hours of service.",
     body_paragraphs=[
         "Oilfield operations do not always fit normal business hours. H-4 Strategic Solutions is based in Fort Gibson, Oklahoma, and holds nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas.",
-        "Our air-ride 40-ft gooseneck carries up to 22,500 lb payload, enough for wellhead equipment, pump components, and similar oilfield support machinery. Every quote request gets a straight answer the same day &mdash; capacity, pricing, and timing based on where the truck is and what&rsquo;s already on the schedule.",
+        "Our air-ride 40-ft gooseneck carries up to 23,000 lb payload, enough for wellhead equipment, pump components, and similar oilfield support machinery. Every quote request gets a straight answer the same day &mdash; capacity, pricing, and timing based on where the truck is and what&rsquo;s already on the schedule.",
         "If you&rsquo;re coordinating logistics for a rig site, service company, or operator, call H-4 directly. After-hours requests are accepted, and dispatch will confirm capacity, pricing, and the earliest available pickup window based on the truck&rsquo;s current position, schedule, loading requirements, and remaining legal hours of service.",
     ],
-    stats=[("22,500 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("AFTER-HOURS", "Requests Accepted")],
+    stats=[("23,000 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("AFTER-HOURS", "Requests Accepted")],
     faqs=[
         ("How fast can H-4 respond to an oilfield emergency load?", "H-4 accepts urgent and after-hours requests. Dispatch confirms capacity and timing based on the truck&rsquo;s current position, existing commitments, loading requirements, and remaining legal hours of service. Same-day pickup may be available but is not guaranteed."),
         ("What states does H-4 serve for oilfield freight?", "H-4 holds nationwide operating authority. Primary lane density and fastest response times are in the core corridor: Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas."),
-        ("What can H-4's equipment haul?", "An air-ride 40-ft gooseneck rated to 22,500 lb payload, suited to wellhead equipment, pump components, and oilfield support machinery within that weight range."),
+        ("What can H-4's equipment haul?", "An air-ride 40-ft gooseneck rated to 23,000 lb payload, suited to wellhead equipment, pump components, and oilfield support machinery within that weight range."),
         ("How do I request an emergency quote?", "Call (918) 869-5241 for the fastest response, or submit a request through the website &mdash; dispatch will follow up the same day with capacity and pricing."),
     ],
     service_type="Oilfield Emergency Equipment Hauling",
@@ -305,20 +305,20 @@ page(
 page(
     slug="construction-equipment-hauling",
     title="Construction Equipment Hauling | Hotshot Flatbed Freight | H-4 Strategic Solutions",
-    description="Reliable hotshot hauling for construction equipment with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Air-ride gooseneck, 22,500 lb payload, same-day quotes.",
+    description="Reliable hotshot hauling for construction equipment with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Air-ride gooseneck, 23,000 lb payload, same-day quotes.",
     eyebrow="Construction Equipment Hauling",
     h1_html='Keep The <span class="accent">Job Site Moving.</span>',
     lede="A piece of equipment sitting on a trailer waiting for transport is a job site standing still. H-4 moves construction equipment on hotshot timelines instead of standard freight schedules.",
     body_paragraphs=[
         "H-4 Strategic Solutions hauls skid steers, compact excavators, attachments, and support machinery within our payload range &mdash; on a hotshot dispatch model rather than a traditional flatbed queue, so a delayed delivery doesn&rsquo;t become a delayed project.",
-        "Our air-ride 40-ft gooseneck handles up to 22,500 lb, and because we run hotshot rather than standard freight, we can typically turn a quote request into a scheduled pickup the same day. That matters most when a contractor needs equipment repositioned between sites, a rental unit needs to move fast, or a breakdown means a replacement machine has to arrive before the crew loses a day.",
+        "Our air-ride 40-ft gooseneck handles up to 23,000 lb, and because we run hotshot rather than standard freight, we can typically turn a quote request into a scheduled pickup the same day. That matters most when a contractor needs equipment repositioned between sites, a rental unit needs to move fast, or a breakdown means a replacement machine has to arrive before the crew loses a day.",
         "We hold nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. Request a quote and we&rsquo;ll confirm capacity and timing directly.",
     ],
-    stats=[("22,500 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
+    stats=[("23,000 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
     faqs=[
         ("Can H-4 reposition equipment between job sites?", "Yes &mdash; inter-site repositioning is one of the most common construction equipment moves H-4 runs, along with rental returns and breakdown replacements."),
         ("What's the typical turnaround from quote to pickup?", "Most construction equipment quote requests get a same-day answer, and pickup is often scheduled the same day capacity is confirmed."),
-        ("What equipment sizes and weights does H-4 handle?", "Up to 22,500 lb on an air-ride 40-ft gooseneck &mdash; skid steers, compact excavators, attachments, and similar support machinery."),
+        ("What equipment sizes and weights does H-4 handle?", "Up to 23,000 lb on an air-ride 40-ft gooseneck &mdash; skid steers, compact excavators, attachments, and similar support machinery."),
         ("Does H-4 serve states outside the core corridor?", "H-4 holds nationwide operating authority. The core corridor (OK/TX/CO/KS/MO/AR) is where lane density and response times are fastest, but requests outside it are welcome."),
     ],
     service_type="Construction Equipment Hauling",
@@ -340,12 +340,12 @@ page(
     lede="Aerospace manufacturing supply chains don&rsquo;t tolerate slack. H-4 supports manufacturers and suppliers with hotshot capacity for time-critical components, tooling, and support equipment.",
     body_paragraphs=[
         "A missed delivery window in aerospace manufacturing can hold up a production line or a certification deadline. H-4 Strategic Solutions supports aerospace manufacturers and their suppliers with hotshot freight capacity for moves that can&rsquo;t sit on a standard multi-day freight schedule.",
-        "We run an air-ride 40-ft gooseneck rated to 22,500 lb, which covers the tooling and equipment moves that come up most often in aerospace manufacturing support. Because we work directly with shippers rather than routing through a broker relay, a quote request gets a same-day, specific answer &mdash; capacity, ETA, and cost &mdash; so your team can plan around a confirmed pickup instead of an estimate.",
+        "We run an air-ride 40-ft gooseneck rated to 23,000 lb, which covers the tooling and equipment moves that come up most often in aerospace manufacturing support. Because we work directly with shippers rather than routing through a broker relay, a quote request gets a same-day, specific answer &mdash; capacity, ETA, and cost &mdash; so your team can plan around a confirmed pickup instead of an estimate.",
         "H-4 holds nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. If your supply chain has a facility or supplier in this region or beyond, request a quote to get a direct line to dispatch.",
     ],
-    stats=[("22,500 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
+    stats=[("23,000 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
     faqs=[
-        ("What kind of aerospace freight does H-4 move?", "Time-critical tooling, components, and support equipment within our 22,500 lb payload range &mdash; the moves that can't wait for a standard multi-day freight schedule."),
+        ("What kind of aerospace freight does H-4 move?", "Time-critical tooling, components, and support equipment within our 23,000 lb payload range &mdash; the moves that can't wait for a standard multi-day freight schedule."),
         ("How does H-4 handle tight production-line deadlines?", "Direct shipper-to-dispatch communication with a same-day quote response, so your team gets a confirmed pickup and ETA instead of a routed estimate."),
         ("Does H-4 work directly with suppliers, not just primes?", "Yes &mdash; H-4 works directly with aerospace manufacturers and their suppliers throughout the supply chain."),
         ("What's H-4's coverage area for aerospace freight?", "Nationwide operating authority, with the fastest response in the core corridor: Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas."),
@@ -363,20 +363,20 @@ page(
 page(
     slug="equipment-rental-logistics",
     title="Equipment Rental Logistics & Delivery | H-4 Strategic Solutions",
-    description="Hotshot delivery and repositioning for equipment rental companies, with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Same-day quotes, air-ride gooseneck, 22,500 lb payload.",
+    description="Hotshot delivery and repositioning for equipment rental companies, with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Same-day quotes, air-ride gooseneck, 23,000 lb payload.",
     eyebrow="Equipment Rental Logistics",
     h1_html='Turn Rental Units <span class="accent">Faster.</span>',
     lede="For a rental fleet, a unit sitting idle between customers is lost revenue. H-4 helps rental companies move equipment faster: deliveries, inter-yard repositioning, and return pickups.",
     body_paragraphs=[
         "H-4 Strategic Solutions helps equipment rental fleets keep units moving instead of waiting on transport &mdash; customer deliveries, inter-yard repositioning, and return pickups, all on a hotshot timeline rather than a standard freight schedule.",
-        "Our air-ride 40-ft gooseneck handles up to 22,500 lb, and our hotshot dispatch model means a rental company can request a quote and get a same-day answer instead of waiting on standard freight. That turnaround speed is often the difference between winning a same-week rental and losing it to downtime.",
+        "Our air-ride 40-ft gooseneck handles up to 23,000 lb, and our hotshot dispatch model means a rental company can request a quote and get a same-day answer instead of waiting on standard freight. That turnaround speed is often the difference between winning a same-week rental and losing it to downtime.",
         "H-4 holds nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. Request a quote directly and we&rsquo;ll confirm timing the same day.",
     ],
-    stats=[("22,500 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
+    stats=[("23,000 LB", "Max Payload"), ("40-FT", "Air-Ride Gooseneck"), ("SAME-DAY", "Quote Response")],
     faqs=[
         ("Can H-4 handle recurring rental yard routes?", "Yes &mdash; scheduled inter-yard repositioning and recurring delivery/return routes are common work for H-4's rental logistics customers."),
         ("How quickly can H-4 move a rental unit to a customer?", "Most quote requests get a same-day answer, which is often the difference in winning a same-week rental against downtime."),
-        ("What equipment does H-4 haul for rental fleets?", "Excavators, generators, compressors, and similar equipment within a 22,500 lb payload on an air-ride 40-ft gooseneck."),
+        ("What equipment does H-4 haul for rental fleets?", "Excavators, generators, compressors, and similar equipment within a 23,000 lb payload on an air-ride 40-ft gooseneck."),
         ("Does H-4 serve rental fleets outside the core states?", "H-4 holds nationwide operating authority. The core corridor (OK/TX/CO/KS/MO/AR) gets the fastest response, but H-4 serves rental logistics requests nationwide."),
     ],
     service_type="Equipment Rental Logistics",
@@ -426,7 +426,7 @@ faqs = [
     ("Does H-4 only run in six states?", "No. H-4 holds nationwide (48-state) operating authority. Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas make up the primary corridor where lane density and response times are strongest."),
     ("Where is H-4 based?", "Fort Gibson, Oklahoma."),
     ("How fast is dispatch outside the core corridor?", "H-4 will run loads anywhere within its nationwide authority. Response time depends on current lane positioning — requests inside the core corridor typically get the fastest turnaround."),
-    ("What equipment does H-4 run?", "An air-ride 40-ft gooseneck rated to 22,500 lb payload, suited to oilfield equipment, construction machinery, aerospace manufacturing support freight, and equipment rental logistics."),
+    ("What equipment does H-4 run?", "An air-ride 40-ft gooseneck rated to 23,000 lb payload, suited to oilfield equipment, construction machinery, aerospace manufacturing support freight, and equipment rental logistics."),
 ]
 
 breadcrumb_schema = {
@@ -443,7 +443,7 @@ schema_tags = "\n".join(f'<script type="application/ld+json">{json.dumps(s)}</sc
 body_paragraphs = [
     "H-4 Strategic Solutions is based in Fort Gibson, Oklahoma, and holds nationwide operating authority — H-4 will run hotshot flatbed freight anywhere in the lower 48 states.",
     "Lane density is concentrated in a six-state corridor: Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. That's where dispatch decisions stay local and response times are fastest — but it's the core of H-4's business, not the limit of it.",
-    "Our equipment is an air-ride 40-ft gooseneck rated for up to 22,500 lb, suited to oilfield equipment, construction machinery, aerospace manufacturing support freight, and equipment rental logistics. Wherever your load originates or needs to land, request a quote and we'll confirm the same day.",
+    "Our equipment is an air-ride 40-ft gooseneck rated for up to 23,000 lb, suited to oilfield equipment, construction machinery, aerospace manufacturing support freight, and equipment rental logistics. Wherever your load originates or needs to land, request a quote and we'll confirm the same day.",
 ]
 body = "".join(f"<p>{p}</p>" for p in body_paragraphs)
 
