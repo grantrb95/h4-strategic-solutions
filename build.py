@@ -1,8 +1,29 @@
-import json, os
+import json, os, subprocess, datetime
 
-_STYLES_CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "styles.css")
+_REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
+_STYLES_CSS_PATH = os.path.join(_REPO_ROOT, "styles.css")
 with open(_STYLES_CSS_PATH, "r", encoding="utf-8") as _f:
     STYLES_CSS = _f.read()
+
+
+def git_lastmod(filename):
+    """Last git commit date (YYYY-MM-DD) for a source file in this repo,
+    falling back to the file's mtime (or today) if git history isn't
+    available - e.g. a shallow clone or a checkout with no .git.
+    """
+    path = os.path.join(_REPO_ROOT, filename)
+    try:
+        out = subprocess.check_output(
+            ["git", "log", "-1", "--format=%cd", "--date=short", "--", filename],
+            cwd=_REPO_ROOT, stderr=subprocess.DEVNULL,
+        ).decode().strip()
+        if out:
+            return out
+    except Exception:
+        pass
+    if os.path.exists(path):
+        return datetime.date.fromtimestamp(os.path.getmtime(path)).isoformat()
+    return datetime.date.today().isoformat()
 
 OUT = "/home/claude/h4-site-build"
 BASE_URL = "https://www.h-4ss.com"
@@ -585,10 +606,12 @@ legal_page(
 # ---------------------------------------------------------------------------
 # sitemap.xml + robots.txt (recommended additions, deployed alongside)
 # ---------------------------------------------------------------------------
-urls = [f"{BASE_URL}/"] + [f"{BASE_URL}/{s}" for s in ALL_PAGES]
+sitemap_entries = [(f"{BASE_URL}/", "index.html")] + [
+    (f"{BASE_URL}/{s}", f"{s}.html") for s in ALL_PAGES
+]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-for u in urls:
-    sitemap += f"  <url><loc>{u}</loc></url>\n"
+for u, filename in sitemap_entries:
+    sitemap += f"  <url><loc>{u}</loc><lastmod>{git_lastmod(filename)}</lastmod></url>\n"
 sitemap += "</urlset>\n"
 with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
     f.write(sitemap)
