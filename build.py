@@ -342,7 +342,7 @@ page(
     title="Oilfield Emergency Hauling | Same-Day Hotshot Freight | H-4 Strategic Solutions",
     description="Emergency oilfield equipment hauling with nationwide operating authority and primary lanes across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas. Same-day quotes, air-ride gooseneck, 23,000 lb payload.",
     eyebrow="Oilfield Emergency Services",
-    h1_html='When A Rig Is Down, <span class="accent">Freight Can&rsquo;t Wait.</span>',
+    h1_html='Oilfield Emergency Hauling: When A Rig Is Down, <span class="accent">Freight Can&rsquo;t Wait.</span>',
     lede="H-4 Strategic Solutions accepts urgent and after-hours oilfield loads for failed parts, equipment swaps, and other time-sensitive moves. Pickup timing is confirmed directly based on truck position, current commitments, loading requirements, and the driver&rsquo;s available hours of service.",
     body_paragraphs=[
         "Oilfield operations do not always fit normal business hours. H-4 Strategic Solutions is based in Fort Gibson, Oklahoma, and holds nationwide operating authority, with primary lane density across Oklahoma, Texas, Colorado, Kansas, Missouri, and Arkansas.",
@@ -373,7 +373,7 @@ page(
     title="Construction Equipment Hauling | Hotshot Flatbed Freight | H-4 Strategic Solutions",
     description="Reliable hotshot hauling for construction equipment with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Air-ride gooseneck, 23,000 lb payload, same-day quotes.",
     eyebrow="Construction Equipment Hauling",
-    h1_html='Keep The <span class="accent">Job Site Moving.</span>',
+    h1_html='Construction Equipment Hauling: Keep The <span class="accent">Job Site Moving.</span>',
     lede="A piece of equipment sitting on a trailer waiting for transport is a job site standing still. H-4 moves construction equipment on hotshot timelines instead of standard freight schedules.",
     body_paragraphs=[
         "H-4 Strategic Solutions hauls skid steers, compact excavators, attachments, and support machinery within our payload range &mdash; on a hotshot dispatch model rather than a traditional flatbed queue, so a delayed delivery doesn&rsquo;t become a delayed project.",
@@ -402,7 +402,7 @@ page(
     title="Aerospace Manufacturing Freight Support | H-4 Strategic Solutions",
     description="Time-critical freight support for aerospace manufacturing and supply chains, with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Same-day quotes, dedicated hotshot capacity.",
     eyebrow="Aerospace Manufacturing Support",
-    h1_html='Precision Freight For A <span class="accent">Precision Industry.</span>',
+    h1_html='Aerospace Manufacturing Freight: Precision Freight For A <span class="accent">Precision Industry.</span>',
     lede="Aerospace manufacturing supply chains don&rsquo;t tolerate slack. H-4 supports manufacturers and suppliers with hotshot capacity for time-critical components, tooling, and support equipment.",
     body_paragraphs=[
         "A missed delivery window in aerospace manufacturing can hold up a production line or a certification deadline. H-4 Strategic Solutions supports aerospace manufacturers and their suppliers with hotshot freight capacity for moves that can&rsquo;t sit on a standard multi-day freight schedule.",
@@ -431,7 +431,7 @@ page(
     title="Equipment Rental Logistics & Delivery | H-4 Strategic Solutions",
     description="Hotshot delivery and repositioning for equipment rental companies, with nationwide operating authority and primary lanes across OK, TX, CO, KS, MO, and AR. Same-day quotes, air-ride gooseneck, 23,000 lb payload.",
     eyebrow="Equipment Rental Logistics",
-    h1_html='Turn Rental Units <span class="accent">Faster.</span>',
+    h1_html='Equipment Rental Logistics: Turn Rental Units <span class="accent">Faster.</span>',
     lede="For a rental fleet, a unit sitting idle between customers is lost revenue. H-4 helps rental companies move equipment faster: deliveries, inter-yard repositioning, and return pickups.",
     body_paragraphs=[
         "H-4 Strategic Solutions helps equipment rental fleets keep units moving instead of waiting on transport &mdash; customer deliveries, inter-yard repositioning, and return pickups, all on a hotshot timeline rather than a standard freight schedule.",
@@ -525,7 +525,7 @@ html = f"""<!DOCTYPE html>
   {render_crumb('Coverage Area', slug)}
   <div class="hero">
     <div class="eyebrow">Service Area</div>
-    <h1>Nationwide Authority. <span class="accent">Regional Speed.</span></h1>
+    <h1>Nationwide Hotshot Authority. <span class="accent">Regional Speed.</span></h1>
     <p class="lede">Based in Fort Gibson, Oklahoma, with nationwide operating authority and a core lane corridor built for fast, local dispatch decisions.</p>
     <div style="margin-top:28px; display:flex; gap:14px;">
       <a class="btn btn-primary" href="{BASE_URL}/#contact">Request a Quote</a>
