@@ -81,9 +81,14 @@ def render_head(slug, title, description):
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="H-4 Strategic Solutions">
+<meta property="og:image" content="https://www.h-4ss.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="H-4 Strategic Solutions — air-ride hotshot flatbed carrier, Fort Gibson, OK">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="https://www.h-4ss.com/og-image.png">
 <link rel="preload" href="/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
