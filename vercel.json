@@ -1,4 +1,17 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "h-4ss.com"
+        }
+      ],
+      "destination": "https://www.h-4ss.com/$1",
+      "permanent": true
+    }
+  ]
 }
