@@ -64,14 +64,15 @@ def area_served():
     ]
 
 
-def render_head(slug, title, description):
+def render_head(slug, title, description, robots=None):
     url = f"{BASE_URL}/{slug}"
+    robots_tag = f'<meta name="robots" content="{robots}">\n' if robots else ""
     return f"""<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 {GA4_SNIPPET}
 <meta name="description" content="{description}">
-<link rel="canonical" href="{url}">
+{robots_tag}<link rel="canonical" href="{url}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
@@ -143,6 +144,7 @@ def render_footer():
     <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
   </div>
   <div style="margin-top:8px;">Nationwide operating authority &middot; Primary lanes: {', '.join(STATES)}</div>
+  <div style="margin-top:8px;"><a href="{BASE_URL}/privacy-policy">Privacy Policy</a> &middot; <a href="{BASE_URL}/terms">Terms of Service</a></div>
 </footer>
 """
 
@@ -274,6 +276,33 @@ def page(slug, title, description, eyebrow, h1_html, lede, body_paragraphs, stat
   {render_faq_html(faqs)}
   {render_related(slug)}
   {render_cta_band(call_first, cta_body)}
+</main>
+{render_footer()}
+{HUBSPOT_EMBED}
+</body>
+</html>
+"""
+    with open(os.path.join(OUT, f"{slug}.html"), "w") as f:
+        f.write(html)
+
+
+def legal_page(slug, title, description, h1, body_html):
+    """Simple noindex legal page (privacy policy, terms) - same head/header/
+    footer as the marketing pages, but no JSON-LD, no breadcrumb/FAQ/related
+    sections. Not added to sitemap.xml.
+    """
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+{render_head(slug, title, description, robots="noindex, follow")}
+</head>
+<body>
+{render_header(slug)}
+<main>
+  <div class="wrap" style="max-width:760px; padding-top:60px; padding-bottom:80px;">
+    <h1>{h1}</h1>
+    {body_html}
+  </div>
 </main>
 {render_footer()}
 {HUBSPOT_EMBED}
@@ -504,6 +533,56 @@ with open(os.path.join(OUT, f"{slug}.html"), "w") as f:
     f.write(html)
 
 # ---------------------------------------------------------------------------
+# Legal pages (noindex, not added to ALL_PAGES so they're excluded from the
+# sitemap and from nav/footer "related" listings automatically)
+# ---------------------------------------------------------------------------
+legal_page(
+    slug="privacy-policy",
+    title="Privacy Policy | H-4 Strategic Solutions",
+    description="How H-4 Strategic Solutions collects, uses, and protects information collected through this website.",
+    h1="Privacy Policy",
+    body_html="""<p><em>Effective September 7, 2026.</em></p>
+<p>H-4 Strategic Solutions LLC (&ldquo;H-4,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates this website. This policy explains what information we collect and how we use it.</p>
+<h3>What We Collect</h3>
+<p>Contact form submissions: name, company, email, phone, and freight details you provide when requesting a quote. We also use standard web analytics through Google Analytics and HubSpot, which may collect your IP address, browser and device information, and cookies used to measure site traffic and how visitors use the site.</p>
+<h3>How We Use It</h3>
+<p>We use this information to respond to quote requests, operate and improve our hotshot freight business, and understand how visitors use our website so we can make it more useful. We do not sell your personal information to third parties.</p>
+<h3>Data Retention</h3>
+<p>We retain contact and quote information as long as needed for business records, customer relationships, and legal or regulatory purposes.</p>
+<h3>Cookies &amp; Analytics</h3>
+<p>Google Analytics and HubSpot may set cookies in your browser to track site usage. You can control or delete cookies through your browser settings; doing so may limit some site functionality.</p>
+<h3>Your Choices</h3>
+<p>To request access to, correction of, or deletion of information we hold about you, email <a href="mailto:Contact@h-4ss.com">Contact@h-4ss.com</a>.</p>
+<h3>Changes to This Policy</h3>
+<p>We may update this policy from time to time. The effective date above reflects the most recent revision.</p>
+<h3>Contact</h3>
+<p>Questions about this policy: <a href="mailto:Contact@h-4ss.com">Contact@h-4ss.com</a>.</p>""",
+)
+
+legal_page(
+    slug="terms",
+    title="Terms of Service | H-4 Strategic Solutions",
+    description="Terms of Service for use of the H-4 Strategic Solutions website and quote requests.",
+    h1="Terms of Service",
+    body_html="""<p><em>Effective September 7, 2026.</em></p>
+<p>These Terms of Service govern your use of this website, operated by H-4 Strategic Solutions LLC (&ldquo;H-4,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;).</p>
+<h3>Informational Site</h3>
+<p>This website is provided for informational purposes to describe H-4&rsquo;s hotshot freight services and to let visitors request quotes. Nothing on this site constitutes a binding offer to transport freight.</p>
+<h3>Quotes Are Non-Binding</h3>
+<p>Rate and capacity information provided through this site, by phone, or by email is a preliminary quote only. No shipment is booked, and no rate is binding on H-4, until both parties have signed a rate confirmation for that specific load.</p>
+<h3>No Warranty</h3>
+<p>This website and its content are provided &ldquo;as is&rdquo; without warranties of any kind, express or implied. H-4 does not warrant that the site will be error-free, uninterrupted, or that its content is complete or current.</p>
+<h3>Limitation of Liability</h3>
+<p>To the fullest extent permitted by law, H-4 is not liable for any damages arising from your use of this website or reliance on information found on it.</p>
+<h3>Governing Law</h3>
+<p>These terms are governed by the laws of the State of Oklahoma, without regard to conflict-of-law principles.</p>
+<h3>Changes</h3>
+<p>We may update these terms at any time. Continued use of the site after changes means you accept the updated terms.</p>
+<h3>Contact</h3>
+<p>Questions about these terms: <a href="mailto:Contact@h-4ss.com">Contact@h-4ss.com</a>.</p>""",
+)
+
+# ---------------------------------------------------------------------------
 # sitemap.xml + robots.txt (recommended additions, deployed alongside)
 # ---------------------------------------------------------------------------
 urls = [f"{BASE_URL}/"] + [f"{BASE_URL}/{s}" for s in ALL_PAGES]
@@ -525,6 +604,14 @@ with open(os.path.join(OUT, "robots.txt"), "w") as f:
 vercel_json = {
     "cleanUrls": True,
     "trailingSlash": False,
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "has": [{"type": "host", "value": "h-4ss.com"}],
+            "destination": "https://www.h-4ss.com/$1",
+            "permanent": True,
+        }
+    ],
 }
 with open(os.path.join(OUT, "vercel.json"), "w") as f:
     json.dump(vercel_json, f, indent=2)
