@@ -21,6 +21,16 @@ HUBSPOT_EMBED = """<!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/246539369.js"></script>
 <!-- End of HubSpot Embed Code -->"""
 
+GA4_SNIPPET = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S9LT3E1SP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5S9LT3E1SP');
+  gtag('config', 'AW-18320893313');
+</script>"""
+
 NAV = [
     ("Home", f"{BASE_URL}/"),
     ("Services", f"{BASE_URL}/#services"),
@@ -59,6 +69,7 @@ def render_head(slug, title, description):
     return f"""<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
+{GA4_SNIPPET}
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
 <link rel="icon" href="/favicon.ico" sizes="any">
