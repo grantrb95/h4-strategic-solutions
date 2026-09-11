@@ -1,0 +1,56 @@
+{
+  "$schema": "https://repomix.com/schemas/latest/schema.json",
+  "output": {
+    "filePath": "repomix-output.md",
+    "style": "markdown",
+    "compress": true,
+    "fileSummary": true,
+    "directoryStructure": true,
+    "removeComments": false,
+    "removeEmptyLines": false,
+    "topFilesLength": 10,
+    "showLineNumbers": false,
+    "copyToClipboard": false
+  },
+  "include": [
+    "**/*.py",
+    "**/*.html",
+    "**/*.css",
+    "**/*.json",
+    "**/*.md",
+    "**/*.xml",
+    "**/*.txt"
+  ],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "node_modules/**",
+      ".next/**",
+      ".vercel/**",
+      ".git/**",
+      "dist/**",
+      "build/**",
+      ".env",
+      ".env.*",
+      "repomix-output.*",
+      "**/*.png",
+      "**/*.webp",
+      "**/*.ico",
+      "**/*.woff2",
+      "**/*.woff",
+      "**/*.ttf",
+      "**/*.svg",
+      "**/*.jpg",
+      "**/*.jpeg",
+      "**/*.gif",
+      "fonts/**"
+    ]
+  },
+  "security": {
+    "enableSecurityCheck": true
+  },
+  "tokenCount": {
+    "encoding": "o200k_base"
+  }
+}
